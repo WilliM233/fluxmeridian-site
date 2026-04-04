@@ -26,6 +26,31 @@ npm run build     # Build static output to dist/
 npm run preview   # Preview built site locally
 ```
 
+## Deployment
+
+Pushing to `main` triggers an automatic build and deploy to Hostinger via GitHub Actions.
+
+**Pipeline:** `push to main` -> `npm ci` -> `npm run build` -> verify `dist/` -> FTP deploy to Hostinger
+
+### GitHub Secrets Required
+
+The workflow uses three repository secrets (Settings > Secrets and variables > Actions):
+
+| Secret | Description |
+|--------|-------------|
+| `FTP_SERVER` | Hostinger FTP server hostname |
+| `FTP_USERNAME` | FTP account username (scoped to public_html) |
+| `FTP_PASSWORD` | FTP account password |
+
+### Manual Deploy
+
+If you need to deploy without the pipeline:
+
+```bash
+npm run build
+# Upload contents of dist/ to Hostinger public_html via FTP client
+```
+
 ## License
 
 AGPL-3.0 — see [LICENSE](LICENSE) for details.
