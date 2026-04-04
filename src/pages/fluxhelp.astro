@@ -119,12 +119,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
     <script>
         (function() {
-            var hash = window.location.hash;
-            if (!hash.includes('category=')) return;
-
-            var params = new URLSearchParams(hash.split('?')[1] || '');
-            var category = params.get('category');
-
             var prefills = {
                 phone: 'I need help with my phone or tablet. ',
                 computer: "I'm having trouble with my computer. ",
@@ -132,17 +126,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 other: ''
             };
 
-            var textarea = document.querySelector('#message');
-            if (textarea && category in prefills) {
-                textarea.value = prefills[category];
+            function handleCategoryPrefill() {
+                var hash = window.location.hash;
+                if (!hash.includes('category=')) return;
+
+                var params = new URLSearchParams(hash.split('?')[1] || '');
+                var category = params.get('category');
+
+                var textarea = document.querySelector('#message');
+                if (textarea && category in prefills) {
+                    textarea.value = prefills[category];
+                }
+
+                var contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    setTimeout(function() {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
             }
 
-            var contactSection = document.getElementById('contact');
-            if (contactSection) {
-                setTimeout(function() {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-            }
+            handleCategoryPrefill();
+            window.addEventListener('hashchange', handleCategoryPrefill);
         })();
     </script>
 </BaseLayout>
