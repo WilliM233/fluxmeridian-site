@@ -1,25 +1,85 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Project Flux Meridian">
-    <section class="hero section">
+<BaseLayout title="Project Flux Meridian — Technology Should Work for Everyone">
+    <!-- Hero -->
+    <section class="hero">
         <div class="container hero__content">
-            <h1>Project Flux Meridian</h1>
-            <p class="hero__subtitle">Technology should work for everyone. We're building it that way.</p>
-            <a href="/fluxhelp" class="hero__cta">Get Tech Help</a>
-            <p class="hero__note">Coming soon — fluxmeridian.com</p>
+            <h1>[Mission headline — technology should work for everyone]</h1>
+            <p class="hero__subtitle">[One-liner positioning Flux Meridian as the umbrella — we build tools and provide help]</p>
+            <a href="#pathways" class="btn btn--amber">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Pathway Cards -->
+    <section id="pathways" class="section pathways">
+        <div class="container">
+            <h2 class="sr-only">[Our Work]</h2>
+            <div class="pathways__grid">
+                <!-- FluxHelp — primary mission, goes first -->
+                <a href="/fluxhelp" class="card">
+                    <div class="card__icon card__icon--purple" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>[FluxHelp headline — Need help with technology?]</h3>
+                    <p>[Free tech help for anyone who needs it — no experience needed, no judgment, just real help from real people]</p>
+                    <span class="card__label" aria-hidden="true">Get Help &rarr;</span>
+                </a>
+
+                <!-- BRAIN -->
+                <a href="https://github.com/WilliM233/brain3" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card__icon card__icon--amber" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.4V20h6v-2.6c2.9-1.1 5-4 5-7.4a8 8 0 0 0-8-8z"/><path d="M12 2v4"/><path d="M8 22h8"/></svg>
+                    </div>
+                    <h3>[BRAIN headline — A tool that works with your brain]</h3>
+                    <p>[A personal operating system built for ADHD — open source, free forever for individuals]</p>
+                    <span class="card__label" aria-hidden="true">Learn More &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Story (Brief) -->
+    <section class="section story">
+        <div class="container story__content">
+            <h2>[Why Flux Meridian Exists]</h2>
+            <p>[Condensed origin story — a systems thinker with ADHD who couldn't find tools that worked for their brain, so they built one. Along the way, they realized the community needed help too.]</p>
+            <p>[Two arms of the same mission: building tools that respect the people using them, and providing free tech help to anyone who needs it. Same philosophy — meet people where they are.]</p>
+            <p>[This isn't a startup pitch. It's a nonprofit mission. Technology should work for everyone, and we're building it that way.]</p>
+            <a href="/about" class="story__link">Read our full story &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Get Involved -->
+    <section class="section involved">
+        <div class="container involved__content">
+            <h2>[Join the Mission]</h2>
+            <p>[What we're looking for — testers for BRAIN, volunteers for FluxHelp, community partnerships, or just spreading the word. Every bit helps.]</p>
+            <a href="mailto:support@fluxhelp.org" class="btn btn--amber">Get in Touch</a>
         </div>
     </section>
 </BaseLayout>
 
 <style>
+    /* Smooth scroll for anchor links */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+    }
+
     .hero__content {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         text-align: center;
-        min-height: calc(100vh - var(--nav-height));
+        padding-block: var(--space-3xl);
     }
 
     .hero__subtitle {
@@ -29,28 +89,142 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         max-width: 600px;
     }
 
-    .hero__cta {
-        display: inline-block;
+    .hero .btn {
         margin-top: var(--space-lg);
-        padding: var(--space-sm) var(--space-lg);
-        background: var(--accent-warm);
-        color: var(--bg-deep);
+    }
+
+    /* ===== Pathway Cards ===== */
+    .pathways {
+        background: var(--bg-mid);
+    }
+
+    .pathways__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+    }
+
+    .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius-lg);
+        padding: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-accent);
+        box-shadow: 0 4px 24px var(--accent-glow);
+    }
+
+    .card:focus-visible {
+        outline: 2px solid var(--accent-warm);
+        outline-offset: 2px;
+    }
+
+    .card h3 {
+        font-size: var(--text-2xl);
+        color: var(--text-primary);
+    }
+
+    .card p {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        flex-grow: 1;
+    }
+
+    .card__label {
         font-family: var(--font-display);
         font-weight: 600;
         font-size: var(--text-base);
-        border-radius: var(--border-radius);
-        text-decoration: none;
-        transition: background var(--transition-fast), box-shadow var(--transition-fast);
-    }
-    .hero__cta:hover {
-        background: var(--accent-warm-hover);
-        color: var(--bg-deep);
-        box-shadow: 0 0 20px var(--accent-warm-glow);
+        color: var(--accent-warm);
+        margin-top: auto;
+        transition: color var(--transition-fast);
     }
 
-    .hero__note {
-        font-size: var(--text-sm);
-        color: var(--text-muted);
-        margin-top: var(--space-lg);
+    .card:hover .card__label {
+        color: var(--accent-warm-hover);
+    }
+
+    .card__icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card__icon--purple {
+        background: var(--accent-glow);
+        color: var(--accent-secondary);
+    }
+
+    .card__icon--amber {
+        background: var(--accent-warm-glow);
+        color: var(--accent-warm);
+    }
+
+    /* ===== Story ===== */
+    .story__content {
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .story__content h2 {
+        margin-bottom: var(--space-lg);
+    }
+
+    .story__content p {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        margin-bottom: var(--space-md);
+    }
+
+    .story__link {
+        display: inline-block;
+        margin-top: var(--space-sm);
+        font-family: var(--font-display);
+        font-weight: 600;
+    }
+
+    /* ===== Get Involved ===== */
+    .involved {
+        background: var(--bg-mid);
+        border-top: 1px solid var(--border-subtle);
+    }
+
+    .involved__content {
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+    }
+
+    .involved__content h2 {
+        margin-bottom: var(--space-md);
+    }
+
+    .involved__content p {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        margin-bottom: var(--space-lg);
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px) {
+        .pathways__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .card {
+            padding: var(--space-lg);
+        }
     }
 </style>

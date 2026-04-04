@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="FluxHelp — Free Tech Help For Everyone" description="Free technology help for anyone who needs it. No experience needed, no judgment — just real help from real people.">
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero__content">
+            <h1>[Free Tech Help For Everyone]</h1>
+            <p class="hero__subtitle">[One sentence — who this is for and what we do, plain and warm, 8th-grade reading level]</p>
+        </div>
+    </section>
+
+    <!-- What We Can Help With -->
+    <section class="section categories">
+        <div class="container">
+            <h2>[What We Can Help With]</h2>
+            <div class="categories__grid">
+                <a href="#contact?category=phone" class="category">
+                    <div class="category__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3>[Phone &amp; Tablet Help]</h3>
+                    <p>[Your phone is acting up, apps aren't working, or you need help getting set up]</p>
+                </a>
+
+                <a href="#contact?category=computer" class="category">
+                    <div class="category__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3>[Computer Trouble]</h3>
+                    <p>[It's slow, something broke, or you're not sure what happened — we'll figure it out together]</p>
+                </a>
+
+                <a href="#contact?category=online" class="category">
+                    <div class="category__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                    </div>
+                    <h3>[Getting Online]</h3>
+                    <p>[Wifi, email, video calls, staying connected with family — we can help you get there]</p>
+                </a>
+
+                <a href="#contact?category=other" class="category category--catchall">
+                    <div class="category__icon category__icon--warm" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <h3>[Something Else?]</h3>
+                    <p>[Not sure if we can help? Just ask. We'd rather you reach out than wonder — the door is always open.]</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section how-it-works">
+        <div class="container">
+            <h2>[How It Works]</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step__number" aria-hidden="true">1</div>
+                    <div class="step__body">
+                        <h3>[Reach Out]</h3>
+                        <p>[Fill out the form below or email us. Tell us what's going on — even if you're not sure, that's okay.]</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step__number" aria-hidden="true">2</div>
+                    <div class="step__body">
+                        <h3>[We'll Get Back to You]</h3>
+                        <p>[Within a couple of days, we'll reach out to set up a time that works for you.]</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step__number" aria-hidden="true">3</div>
+                    <div class="step__body">
+                        <h3>[We Help, Your Way]</h3>
+                        <p>[Want us to fix it? We'll fix it. Want to learn how? We'll teach you. Your call, every time.]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="section contact">
+        <div class="container contact__content">
+            <h2>[Let's Talk]</h2>
+            <p class="contact__intro">[Short reassuring line — no pressure, no tech speak, just tell us what's going on]</p>
+
+            <form
+                action="https://formsubmit.co/support@fluxhelp.org"
+                method="POST"
+                class="form"
+            >
+                <!-- Formsubmit config -->
+                <input type="hidden" name="_subject" value="New FluxHelp Request">
+                <input type="hidden" name="_captcha" value="true">
+                <input type="hidden" name="_next" value="https://fluxmeridian.com/fluxhelp">
+
+                <div class="form__field">
+                    <label for="name">[Your Name]</label>
+                    <input type="text" id="name" name="name" required autocomplete="name">
+                </div>
+
+                <div class="form__field">
+                    <label for="contact">[Email or Phone Number — however you'd like us to reach you]</label>
+                    <input type="text" id="contact" name="contact" required>
+                </div>
+
+                <div class="form__field">
+                    <label for="message">[Tell us what's going on — even if you're not sure, that's okay]</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--amber">[Send Message]</button>
+            </form>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var prefills = {
+                phone: 'I need help with my phone or tablet. ',
+                computer: "I'm having trouble with my computer. ",
+                online: 'I need help getting online. ',
+                other: ''
+            };
+
+            function handleCategoryPrefill() {
+                var hash = window.location.hash;
+                if (!hash.includes('category=')) return;
+
+                var params = new URLSearchParams(hash.split('?')[1] || '');
+                var category = params.get('category');
+
+                var textarea = document.querySelector('#message');
+                if (textarea && category in prefills) {
+                    textarea.value = prefills[category];
+                }
+
+                var contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    setTimeout(function() {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+
+            handleCategoryPrefill();
+            window.addEventListener('hashchange', handleCategoryPrefill);
+        })();
+    </script>
+</BaseLayout>
+
+<style>
+    /* ===== Hero (shorter than home) ===== */
+    .hero {
+        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+        padding-block: var(--space-3xl) var(--space-2xl);
+    }
+
+    .hero__content {
+        text-align: center;
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .hero__subtitle {
+        font-size: var(--text-xl);
+        color: var(--text-secondary);
+        margin-top: var(--space-md);
+        line-height: var(--leading-relaxed);
+    }
+
+    /* ===== Categories ===== */
+    .categories h2 {
+        text-align: center;
+        margin-bottom: var(--space-xl);
+    }
+
+    .categories__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+    }
+
+    .category {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius-lg);
+        padding: var(--space-lg);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .category:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-accent);
+        box-shadow: 0 4px 24px var(--accent-glow);
+    }
+
+    .category:focus-visible {
+        outline: 2px solid var(--accent-warm);
+        outline-offset: 2px;
+    }
+
+    .category h3 {
+        font-size: var(--text-xl);
+        color: var(--text-primary);
+    }
+
+    .category p {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        font-size: var(--text-lg);
+    }
+
+    .category--catchall {
+        border-color: var(--accent-warm-glow);
+        background: linear-gradient(135deg, var(--bg-card) 0%, rgba(245, 158, 11, 0.05) 100%);
+    }
+
+    .category--catchall:hover {
+        border-color: var(--accent-warm);
+        box-shadow: 0 4px 24px var(--accent-warm-glow);
+    }
+
+    .category__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-glow);
+        color: var(--accent-secondary);
+    }
+
+    .category__icon--warm {
+        background: var(--accent-warm-glow);
+        color: var(--accent-warm);
+    }
+
+    /* ===== How It Works ===== */
+    .how-it-works {
+        background: var(--bg-mid);
+    }
+
+    .how-it-works h2 {
+        text-align: center;
+        margin-bottom: var(--space-xl);
+    }
+
+    .steps {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+        max-width: 640px;
+        margin-inline: auto;
+    }
+
+    .step {
+        display: flex;
+        gap: var(--space-lg);
+        align-items: flex-start;
+    }
+
+    .step__number {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--accent-glow);
+        color: var(--accent-secondary);
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-2xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .step__body h3 {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-xs);
+    }
+
+    .step__body p {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        font-size: var(--text-lg);
+    }
+
+    /* ===== Contact Form ===== */
+    .contact__content {
+        max-width: 600px;
+        margin-inline: auto;
+    }
+
+    .contact__content h2 {
+        text-align: center;
+        margin-bottom: var(--space-sm);
+    }
+
+    .contact__intro {
+        text-align: center;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-xl);
+        font-size: var(--text-lg);
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+
+    .form__field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .form__field label {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: var(--text-base);
+        color: var(--text-primary);
+    }
+
+    .form__field input,
+    .form__field textarea {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius);
+        padding: var(--space-sm) var(--space-md);
+        font-family: var(--font-body);
+        font-size: var(--text-lg);
+        color: var(--text-primary);
+        line-height: var(--leading-normal);
+        transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .form__field input:focus,
+    .form__field textarea:focus {
+        outline: none;
+        border-color: var(--accent-warm);
+        box-shadow: 0 0 0 3px var(--accent-warm-glow);
+    }
+
+    .form__field textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .form .btn {
+        align-self: flex-start;
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px) {
+        .categories__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .step {
+            gap: var(--space-md);
+        }
+    }
+</style>

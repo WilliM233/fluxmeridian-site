@@ -48,3 +48,40 @@ a:hover {
 .section {
     padding-block: var(--space-2xl);
 }
+
+/* Utility: button */
+.btn {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-base);
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+}
+
+.btn--amber {
+    background: var(--accent-warm);
+    color: var(--bg-deep);
+}
+.btn--amber:hover {
+    background: var(--accent-warm-hover);
+    color: var(--bg-deep);
+    box-shadow: 0 0 20px var(--accent-warm-glow);
+}
+
+/* Utility: visually hidden, accessible to screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

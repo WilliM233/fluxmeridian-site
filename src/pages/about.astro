@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="About — Project Flux Meridian" description="The story behind Flux Meridian — who we are, why we exist, and where we're going.">
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero__content">
+            <h1>[The Story Behind Flux Meridian]</h1>
+        </div>
+    </section>
+
+    <!-- L's Story -->
+    <section class="section story">
+        <div class="container story__content">
+            <h2>[Hi, I'm L]</h2>
+            <p>[Introduction — they/them, Springfield MO, systems thinker with ADHD. Someone who sees the world in patterns and connections, and can't stop building things.]</p>
+            <p>[The BRAIN origin — couldn't find tools that worked for their brain, so they built one. We don't talk about 1.0 and 2.0. Third time's the charm — BRAIN 3.0 is the one that stuck.]</p>
+            <p>[The FluxHelp origin — realized the community needed help too. People in their life kept asking for tech help, and there was nowhere safe to send them. So they built that too.]</p>
+            <p>[The intersection — same philosophy powers both: meet people where they are, build capacity not dependency. Whether it's a tool or a service, the goal is the same — make technology work for the person, not the other way around.]</p>
+        </div>
+    </section>
+
+    <!-- The Mission -->
+    <section class="section mission">
+        <div class="container mission__content">
+            <h2>[What We Believe]</h2>
+            <p>[Why Flux Meridian exists as an organization, not just a project. Technology should work for everyone — not just the people who already understand it. Tools should respect the people using them, not exploit them.]</p>
+            <p>[The free-forever commitment. BRAIN is open source under AGPL. FluxHelp is free, no strings. This isn't a business model — it's a promise. If we can't do it without charging people who need help, we're doing it wrong.]</p>
+        </div>
+    </section>
+
+    <!-- What's Next -->
+    <section class="section next">
+        <div class="container next__content">
+            <h2>[Where We're Going]</h2>
+            <p>[Nonprofit incorporation, community growth, BRAIN roadmap milestones, expanding FluxHelp services. The work is just getting started — but the foundation is solid and the mission is clear.]</p>
+            <a href="https://github.com/WilliM233/brain3" target="_blank" rel="noopener noreferrer" class="next__link">See our work on GitHub &rarr;</a>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    /* ===== Hero (short — heading only) ===== */
+    .hero {
+        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+        padding-block: var(--space-3xl) var(--space-xl);
+    }
+
+    .hero__content {
+        text-align: center;
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    /* ===== Shared section prose styling ===== */
+    .story__content,
+    .mission__content,
+    .next__content {
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .story__content h2,
+    .mission__content h2,
+    .next__content h2 {
+        margin-bottom: var(--space-lg);
+    }
+
+    .story__content p,
+    .mission__content p,
+    .next__content p {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        margin-bottom: var(--space-md);
+    }
+
+    /* ===== Mission — subtle background shift ===== */
+    .mission {
+        background: var(--bg-mid);
+    }
+
+    /* ===== What's Next ===== */
+    .next__link {
+        display: inline-block;
+        margin-top: var(--space-sm);
+        font-family: var(--font-display);
+        font-weight: 600;
+    }
+</style>
