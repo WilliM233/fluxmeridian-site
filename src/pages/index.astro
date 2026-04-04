@@ -1,13 +1,56 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Project Flux Meridian">
-    <main style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
-        <div style="text-align: center;">
-            <h1 style="font-size: var(--text-5xl); margin-bottom: var(--space-md);">Project Flux Meridian</h1>
-            <p style="font-size: var(--text-xl); color: var(--text-secondary);">Technology should work for everyone. We're building it that way.</p>
-            <p style="font-size: var(--text-base); color: var(--text-muted); margin-top: var(--space-lg);">Coming soon — fluxmeridian.com</p>
+    <section class="hero section">
+        <div class="container hero__content">
+            <h1>Project Flux Meridian</h1>
+            <p class="hero__subtitle">Technology should work for everyone. We're building it that way.</p>
+            <a href="/fluxhelp" class="hero__cta">Get Tech Help</a>
+            <p class="hero__note">Coming soon — fluxmeridian.com</p>
         </div>
-    </main>
+    </section>
 </BaseLayout>
+
+<style>
+    .hero__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: calc(100vh - var(--nav-height));
+    }
+
+    .hero__subtitle {
+        font-size: var(--text-xl);
+        color: var(--text-secondary);
+        margin-top: var(--space-md);
+        max-width: 600px;
+    }
+
+    .hero__cta {
+        display: inline-block;
+        margin-top: var(--space-lg);
+        padding: var(--space-sm) var(--space-lg);
+        background: var(--accent-warm);
+        color: var(--bg-deep);
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: var(--text-base);
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        transition: background var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .hero__cta:hover {
+        background: var(--accent-warm-hover);
+        color: var(--bg-deep);
+        box-shadow: 0 0 20px var(--accent-warm-glow);
+    }
+
+    .hero__note {
+        font-size: var(--text-sm);
+        color: var(--text-muted);
+        margin-top: var(--space-lg);
+    }
+</style>
