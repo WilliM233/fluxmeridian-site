@@ -22,7 +22,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                     <h3>[FluxHelp headline — Need help with technology?]</h3>
                     <p>[Free tech help for anyone who needs it — no experience needed, no judgment, just real help from real people]</p>
-                    <span class="btn btn--amber" aria-hidden="true">Get Help</span>
+                    <span class="card__label" aria-hidden="true">Get Help &rarr;</span>
                 </a>
 
                 <!-- BRAIN -->
@@ -32,7 +32,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                     <h3>[BRAIN headline — A tool that works with your brain]</h3>
                     <p>[A personal operating system built for ADHD — open source, free forever for individuals]</p>
-                    <span class="btn btn--amber" aria-hidden="true">Learn More</span>
+                    <span class="card__label" aria-hidden="true">Learn More &rarr;</span>
                 </a>
             </div>
         </div>
@@ -161,9 +161,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         flex-grow: 1;
     }
 
-    .card .btn {
-        align-self: flex-start;
-        pointer-events: none;
+    .card__label {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: var(--text-base);
+        color: var(--accent-warm);
+        margin-top: auto;
+        transition: color var(--transition-fast);
+    }
+
+    .card:hover .card__label {
+        color: var(--accent-warm-hover);
     }
 
     .card__icon {
