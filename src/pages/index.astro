@@ -16,24 +16,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="container">
             <div class="pathways__grid">
                 <!-- FluxHelp — primary mission, goes first -->
-                <div class="card">
+                <a href="/fluxhelp" class="card">
                     <div class="card__icon card__icon--purple" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
                     <h3>[FluxHelp headline — Need help with technology?]</h3>
                     <p>[Free tech help for anyone who needs it — no experience needed, no judgment, just real help from real people]</p>
-                    <a href="/fluxhelp" class="btn btn--amber">Get Help</a>
-                </div>
+                    <span class="btn btn--amber" aria-hidden="true">Get Help</span>
+                </a>
 
                 <!-- BRAIN -->
-                <div class="card">
+                <a href="https://github.com/WilliM233/brain3" target="_blank" rel="noopener noreferrer" class="card">
                     <div class="card__icon card__icon--amber" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.4V20h6v-2.6c2.9-1.1 5-4 5-7.4a8 8 0 0 0-8-8z"/><path d="M12 2v4"/><path d="M8 22h8"/></svg>
                     </div>
                     <h3>[BRAIN headline — A tool that works with your brain]</h3>
                     <p>[A personal operating system built for ADHD — open source, free forever for individuals]</p>
-                    <a href="https://github.com/WilliM233/brain3" target="_blank" rel="noopener noreferrer" class="btn btn--amber">Learn More</a>
-                </div>
+                    <span class="btn btn--amber" aria-hidden="true">Learn More</span>
+                </a>
             </div>
         </div>
     </section>
@@ -133,10 +133,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         display: flex;
         flex-direction: column;
         gap: var(--space-md);
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-accent);
+        box-shadow: 0 4px 24px var(--accent-glow);
+    }
+
+    .card:focus-visible {
+        outline: 2px solid var(--accent-warm);
+        outline-offset: 2px;
     }
 
     .card h3 {
         font-size: var(--text-2xl);
+        color: var(--text-primary);
     }
 
     .card p {
@@ -147,6 +163,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     .card .btn {
         align-self: flex-start;
+        pointer-events: none;
     }
 
     .card__icon {
