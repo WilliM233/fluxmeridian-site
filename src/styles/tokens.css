@@ -1,28 +1,28 @@
 /*
  * Design Tokens — Flux Meridian
  * CSS custom properties for consistent theming
+ * Palette: Dark Galaxy Purple
  */
 
 :root {
-  /* Colors — Neutral */
-  --color-white: #ffffff;
-  --color-black: #0a0a0a;
-  --color-gray-50: #fafafa;
-  --color-gray-100: #f4f4f5;
-  --color-gray-200: #e4e4e7;
-  --color-gray-300: #d4d4d8;
-  --color-gray-400: #a1a1aa;
-  --color-gray-500: #71717a;
-  --color-gray-600: #52525b;
-  --color-gray-700: #3f3f46;
-  --color-gray-800: #27272a;
-  --color-gray-900: #18181b;
+  /* Colors — Backgrounds (deep space darks) */
+  --color-bg-deep: #0a0a1a;
+  --color-bg-mid: #0f0f2a;
+  --color-bg-surface: #1a1a3a;
 
-  /* Colors — Brand (placeholder — refine during design phase) */
-  --color-primary: #6366f1;
-  --color-primary-light: #818cf8;
-  --color-primary-dark: #4f46e5;
-  --color-accent: #f59e0b;
+  /* Colors — Accents */
+  --color-primary: #7c3aed;
+  --color-primary-light: #a855f7;
+  --color-primary-dark: #6d28d9;
+
+  /* Colors — Text */
+  --color-text: #ffffff;
+  --color-text-muted: #d1d5db;
+  --color-text-faint: #9ca3af;
+
+  /* Colors — State */
+  --color-success: #34d399;
+  --color-error: #f87171;
 
   /* Typography */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -62,10 +62,10 @@
   --radius-lg: 1rem;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px rgb(0 0 0 / 0.07);
-  --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.1);
+  /* Shadows (adapted for dark theme) */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.5);
 
   /* Transitions */
   --transition-fast: 150ms ease;
