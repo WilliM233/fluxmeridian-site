@@ -1,0 +1,26 @@
+@import "./reset.css";
+@import "./tokens.css";
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-gray-900);
+  background-color: var(--color-white);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
