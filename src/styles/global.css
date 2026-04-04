@@ -2,8 +2,86 @@
 @import './tokens.css';
 
 body {
-    font-family: system-ui, sans-serif; /* placeholder until fonts chosen */
+    font-family: var(--font-body);
+    font-size: var(--text-base);
     background-color: var(--bg-deep);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: var(--leading-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+
+a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+a:hover {
+    color: var(--accent-warm);
+}
+
+/* Focus styles for keyboard navigation — accessibility */
+:focus-visible {
+    outline: 2px solid var(--accent-warm);
+    outline-offset: 2px;
+}
+
+/* Utility: constrain content width */
+.container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--content-padding);
+}
+
+/* Utility: section spacing */
+.section {
+    padding-block: var(--space-2xl);
+}
+
+/* Utility: button */
+.btn {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-base);
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+}
+
+.btn--amber {
+    background: var(--accent-warm);
+    color: var(--bg-deep);
+}
+.btn--amber:hover {
+    background: var(--accent-warm-hover);
+    color: var(--bg-deep);
+    box-shadow: 0 0 20px var(--accent-warm-glow);
+}
+
+/* Utility: visually hidden, accessible to screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
