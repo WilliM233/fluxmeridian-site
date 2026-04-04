@@ -2,8 +2,49 @@
 @import './tokens.css';
 
 body {
-    font-family: system-ui, sans-serif; /* placeholder until fonts chosen */
+    font-family: var(--font-body);
+    font-size: var(--text-base);
     background-color: var(--bg-deep);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: var(--leading-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+
+a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+a:hover {
+    color: var(--accent-warm);
+}
+
+/* Focus styles for keyboard navigation — accessibility */
+:focus-visible {
+    outline: 2px solid var(--accent-warm);
+    outline-offset: 2px;
+}
+
+/* Utility: constrain content width */
+.container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--content-padding);
+}
+
+/* Utility: section spacing */
+.section {
+    padding-block: var(--space-2xl);
 }
