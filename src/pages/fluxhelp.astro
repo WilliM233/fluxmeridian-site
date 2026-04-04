@@ -15,37 +15,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="container">
             <h2>[What We Can Help With]</h2>
             <div class="categories__grid">
-                <div class="category">
+                <a href="#contact?category=phone" class="category">
                     <div class="category__icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                     </div>
                     <h3>[Phone &amp; Tablet Help]</h3>
                     <p>[Your phone is acting up, apps aren't working, or you need help getting set up]</p>
-                </div>
+                </a>
 
-                <div class="category">
+                <a href="#contact?category=computer" class="category">
                     <div class="category__icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
                     <h3>[Computer Trouble]</h3>
                     <p>[It's slow, something broke, or you're not sure what happened — we'll figure it out together]</p>
-                </div>
+                </a>
 
-                <div class="category">
+                <a href="#contact?category=online" class="category">
                     <div class="category__icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
                     </div>
                     <h3>[Getting Online]</h3>
                     <p>[Wifi, email, video calls, staying connected with family — we can help you get there]</p>
-                </div>
+                </a>
 
-                <div class="category category--catchall">
+                <a href="#contact?category=other" class="category category--catchall">
                     <div class="category__icon category__icon--warm" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     </div>
                     <h3>[Something Else?]</h3>
                     <p>[Not sure if we can help? Just ask. We'd rather you reach out than wonder — the door is always open.]</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -83,7 +83,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <!-- Contact Form -->
-    <section class="section contact">
+    <section id="contact" class="section contact">
         <div class="container contact__content">
             <h2>[Let's Talk]</h2>
             <p class="contact__intro">[Short reassuring line — no pressure, no tech speak, just tell us what's going on]</p>
@@ -117,6 +117,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </form>
         </div>
     </section>
+    <script>
+        (function() {
+            var hash = window.location.hash;
+            if (!hash.includes('category=')) return;
+
+            var params = new URLSearchParams(hash.split('?')[1] || '');
+            var category = params.get('category');
+
+            var prefills = {
+                phone: 'I need help with my phone or tablet. ',
+                computer: "I'm having trouble with my computer. ",
+                online: 'I need help getting online. ',
+                other: ''
+            };
+
+            var textarea = document.querySelector('#message');
+            if (textarea && category in prefills) {
+                textarea.value = prefills[category];
+            }
+
+            var contactSection = document.getElementById('contact');
+            if (contactSection) {
+                setTimeout(function() {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        })();
+    </script>
 </BaseLayout>
 
 <style>
@@ -159,10 +187,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         display: flex;
         flex-direction: column;
         gap: var(--space-sm);
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .category:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-accent);
+        box-shadow: 0 4px 24px var(--accent-glow);
+    }
+
+    .category:focus-visible {
+        outline: 2px solid var(--accent-warm);
+        outline-offset: 2px;
     }
 
     .category h3 {
         font-size: var(--text-xl);
+        color: var(--text-primary);
     }
 
     .category p {
@@ -174,6 +218,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .category--catchall {
         border-color: var(--accent-warm-glow);
         background: linear-gradient(135deg, var(--bg-card) 0%, rgba(245, 158, 11, 0.05) 100%);
+    }
+
+    .category--catchall:hover {
+        border-color: var(--accent-warm);
+        box-shadow: 0 4px 24px var(--accent-warm-glow);
     }
 
     .category__icon {
