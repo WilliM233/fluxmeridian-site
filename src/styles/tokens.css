@@ -1,73 +1,42 @@
-/*
- * Design Tokens — Flux Meridian
- * CSS custom properties for consistent theming
- * Palette: Dark Galaxy Purple
- */
-
 :root {
-  /* Colors — Backgrounds (deep space darks) */
-  --color-bg-deep: #0a0a1a;
-  --color-bg-mid: #0f0f2a;
-  --color-bg-surface: #1a1a3a;
+    /* Backgrounds */
+    --bg-deep: #0a0a1a;
+    --bg-mid: #0f0f2a;
+    --bg-card: #1a1a3a;
 
-  /* Colors — Accents */
-  --color-primary: #7c3aed;
-  --color-primary-light: #a855f7;
-  --color-primary-dark: #6d28d9;
+    /* Accent */
+    --accent-primary: #7c3aed;
+    --accent-secondary: #a855f7;
+    --accent-glow: rgba(124, 58, 237, 0.3);
 
-  /* Colors — Text */
-  --color-text: #ffffff;
-  --color-text-muted: #d1d5db;
-  --color-text-faint: #9ca3af;
+    /* Text */
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
 
-  /* Colors — State */
-  --color-success: #34d399;
-  --color-error: #f87171;
+    /* Spacing scale */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+    --space-2xl: 8rem;
 
-  /* Typography */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+    /* Typography scale */
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 2rem;
+    --text-4xl: 2.5rem;
+    --text-5xl: 3.5rem;
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
+    /* Layout */
+    --max-width: 1200px;
+    --border-radius: 0.5rem;
 
-  --leading-tight: 1.25;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.75;
-
-  /* Spacing */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
-
-  /* Layout */
-  --max-width: 72rem;
-  --content-width: 48rem;
-
-  /* Borders */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
-  --radius-full: 9999px;
-
-  /* Shadows (adapted for dark theme) */
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
-  --shadow-md: 0 4px 6px rgb(0 0 0 / 0.4);
-  --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.5);
-
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 300ms ease;
 }

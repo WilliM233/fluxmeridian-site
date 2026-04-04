@@ -1,10 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-
-<BaseLayout title="Flux Meridian">
-  <main>
-    <h1>Flux Meridian</h1>
-    <p>Something is being built here.</p>
-  </main>
+<BaseLayout title="Project Flux Meridian">
+    <main style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+        <div style="text-align: center;">
+            <h1 style="font-size: var(--text-5xl); margin-bottom: var(--space-md);">Project Flux Meridian</h1>
+            <p style="font-size: var(--text-xl); color: var(--text-secondary);">Technology should work for everyone. We're building it that way.</p>
+            <p style="font-size: var(--text-base); color: var(--text-muted); margin-top: var(--space-lg);">Coming soon — fluxmeridian.com</p>
+        </div>
+    </main>
 </BaseLayout>
