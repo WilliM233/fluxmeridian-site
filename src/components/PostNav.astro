@@ -1,0 +1,97 @@
+---
+interface NavPost {
+    id: string;
+    title: string;
+}
+
+interface Props {
+    prevPost: NavPost | null;
+    nextPost: NavPost | null;
+}
+
+const { prevPost, nextPost } = Astro.props;
+---
+
+{(prevPost || nextPost) && (
+    <nav class="post-nav" aria-label="Blog post navigation">
+        {prevPost ? (
+            <a href={`/blog/${prevPost.id}`} class="post-nav__link">
+                <span class="post-nav__label">Previous Post</span>
+                <span class="post-nav__title">{prevPost.title}</span>
+            </a>
+        ) : (
+            <span class="post-nav__link post-nav__link--empty"></span>
+        )}
+        {nextPost ? (
+            <a href={`/blog/${nextPost.id}`} class="post-nav__link post-nav__link--next">
+                <span class="post-nav__label">Next Post</span>
+                <span class="post-nav__title">{nextPost.title}</span>
+            </a>
+        ) : (
+            <span class="post-nav__link post-nav__link--empty"></span>
+        )}
+    </nav>
+)}
+
+<style>
+    .post-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-md);
+        margin-top: var(--space-xl);
+        padding-top: var(--space-lg);
+        border-top: 1px solid var(--border-subtle);
+    }
+
+    .post-nav__link {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius);
+        padding: var(--space-md);
+        text-decoration: none;
+        transition: border-color var(--transition-fast);
+        flex: 1;
+        min-width: 0;
+    }
+
+    .post-nav__link:hover {
+        border-color: var(--border-accent);
+    }
+
+    .post-nav__link--next {
+        text-align: right;
+    }
+
+    .post-nav__link--empty {
+        visibility: hidden;
+    }
+
+    .post-nav__label {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        color: var(--text-muted);
+        text-transform: uppercase;
+    }
+
+    .post-nav__title {
+        color: var(--text-secondary);
+        font-size: var(--text-base);
+    }
+
+    @media (max-width: 768px) {
+        .post-nav {
+            flex-direction: column;
+        }
+
+        .post-nav__link--next {
+            text-align: left;
+        }
+
+        .post-nav__link--empty {
+            display: none;
+        }
+    }
+</style>

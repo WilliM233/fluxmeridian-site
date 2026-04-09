@@ -3,7 +3,31 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
-const { title = 'Project Flux Meridian', description = 'Technology should work for everyone.' } = Astro.props;
+interface Props {
+    title?: string;
+    description?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    ogType?: string;
+    canonicalUrl?: string;
+    twitterCard?: string;
+}
+
+const {
+    title = 'Project Flux Meridian',
+    description = 'Technology should work for everyone.',
+    ogTitle,
+    ogDescription,
+    ogImage,
+    ogType,
+    canonicalUrl,
+    twitterCard,
+} = Astro.props;
+
+const resolvedOgTitle = ogTitle || title;
+const resolvedOgDescription = ogDescription || description;
+const resolvedTwitterCard = twitterCard || (ogImage ? 'summary_large_image' : undefined);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +36,14 @@ const { title = 'Project Flux Meridian', description = 'Technology should work f
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content={description}>
     <title>{title}</title>
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <!-- Open Graph -->
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    {ogType && <meta property="og:type" content={ogType} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <!-- Twitter Card -->
+    {resolvedTwitterCard && <meta name="twitter:card" content={resolvedTwitterCard} />}
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,0 +1,80 @@
+---
+interface Props {
+    url: string;
+    title: string;
+}
+
+const { url, title } = Astro.props;
+
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+
+const shareLinks = [
+    {
+        label: 'Share on LinkedIn',
+        href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+    },
+    {
+        label: 'Share on Twitter',
+        href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16h-4.267z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>`,
+    },
+    {
+        label: 'Share on Facebook',
+        href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+    },
+];
+---
+
+<div class="share-links">
+    <span class="share-links__label">Share this post</span>
+    <div class="share-links__row">
+        {shareLinks.map(link => (
+            <a
+                href={link.href}
+                class="share-links__link"
+                aria-label={link.label}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <Fragment set:html={link.icon} />
+            </a>
+        ))}
+    </div>
+</div>
+
+<style>
+    .share-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
+    }
+
+    .share-links__label {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        color: var(--text-muted);
+    }
+
+    .share-links__row {
+        display: flex;
+        gap: var(--space-md);
+    }
+
+    .share-links__link {
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-xs);
+        transition: color var(--transition-fast);
+    }
+
+    .share-links__link:hover {
+        color: var(--accent-secondary);
+    }
+</style>
