@@ -20,9 +20,6 @@ export async function GET(context: APIContext) {
       pubDate: post.data.date,
       link: `/blog/${post.id}`,
       content: post.body ? String(marked.parse(post.body)) : undefined,
-      customData: post.data.canonicalUrl
-        ? `<link rel="canonical" href="${post.data.canonicalUrl}" />`
-        : undefined,
       categories: post.data.tags,
     })),
   });
