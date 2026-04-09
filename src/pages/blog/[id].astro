@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostHeader from '../../components/PostHeader.astro';
+import PostNav from '../../components/PostNav.astro';
+import ShareLinks from '../../components/ShareLinks.astro';
+import '../../styles/prose.css';
+
+function getReadingTime(text: string): string {
+    const wordsPerMinute = 200;
+    const words = text.trim().split(/\s+/).length;
+    const minutes = Math.max(1, Math.ceil(words / wordsPerMinute));
+    return `${minutes} min read`;
+}
+
+export async function getStaticPaths() {
+    const posts = await getCollection('blog');
+    const sorted = posts.sort(
+        (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+    );
+
+    return sorted.map((post, index) => ({
+        params: { id: post.id },
+        props: {
+            post,
+            prevPost: index < sorted.length - 1
+                ? { id: sorted[index + 1].id, title: sorted[index + 1].data.title }
+                : null,
+            nextPost: index > 0
+                ? { id: sorted[index - 1].id, title: sorted[index - 1].data.title }
+                : null,
+        },
+    }));
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await render(post);
+const readingTime = getReadingTime(post.body || '');
+
+const siteUrl = Astro.site?.origin || 'https://fluxmeridian.com';
+const canonicalUrl = post.data.canonicalUrl || `${siteUrl}/blog/${post.id}`;
+const ogImage = post.data.coverImage || '/og-default.png';
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+
+<BaseLayout
+    title={`${post.data.title} — Project Flux Meridian`}
+    description={post.data.description}
+    ogTitle={post.data.title}
+    ogDescription={post.data.description}
+    ogImage={ogImageUrl}
+    ogType="article"
+    canonicalUrl={canonicalUrl}
+    twitterCard="summary_large_image"
+>
+    <section class="hero">
+        <div class="container hero__content">
+            <PostHeader
+                title={post.data.title}
+                date={post.data.date}
+                tags={post.data.tags}
+                readingTime={readingTime}
+                author={post.data.author}
+            />
+        </div>
+    </section>
+
+    <section class="section post-body">
+        <div class="container">
+            <article class="prose post-content">
+                <Content />
+            </article>
+            <div class="post-footer">
+                <PostNav prevPost={prevPost} nextPost={nextPost} />
+                <ShareLinks url={`${siteUrl}/blog/${post.id}`} title={post.data.title} />
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .hero {
+        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+        padding-block: var(--space-3xl) var(--space-xl);
+    }
+
+    .hero__content {
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .post-content {
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .post-footer {
+        max-width: 720px;
+        margin-inline: auto;
+    }
+</style>
