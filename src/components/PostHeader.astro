@@ -1,4 +1,6 @@
 ---
+import { slugifyTag } from '../utils/slugify';
+
 interface Props {
     title: string;
     date: Date;
@@ -14,9 +16,6 @@ const formattedDate = date.toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
 });
-
-const slugifyTag = (tag: string) =>
-    tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 ---
 
 <header class="post-header">

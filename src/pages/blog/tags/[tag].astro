@@ -2,18 +2,10 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostCard from '../../../components/PostCard.astro';
+import { getReadingTime } from '../../../utils/reading-time';
+import { slugifyTag } from '../../../utils/slugify';
 
 export async function getStaticPaths() {
-    const slugifyTag = (tag: string) =>
-        tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-
-    function getReadingTime(text: string): string {
-        const wordsPerMinute = 200;
-        const words = text.trim().split(/\s+/).length;
-        const minutes = Math.max(1, Math.ceil(words / wordsPerMinute));
-        return `${minutes} min read`;
-    }
-
     const posts = await getCollection('blog', ({ data }) => !data.draft);
 
     // Group posts by slugified tag, preserving original display name
