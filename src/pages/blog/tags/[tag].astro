@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { getReadingTime } from '../../../utils/reading-time';
+import { slugifyTag } from '../../../utils/slugify';
+
+export async function getStaticPaths() {
+    const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+    // Group posts by slugified tag, preserving original display name
+    const tagMap = new Map<string, { displayName: string; posts: typeof posts }>();
+
+    for (const post of posts) {
+        for (const tag of post.data.tags) {
+            const slug = slugifyTag(tag);
+            if (!tagMap.has(slug)) {
+                tagMap.set(slug, { displayName: tag, posts: [] });
+            }
+            tagMap.get(slug)!.posts.push(post);
+        }
+    }
+
+    return Array.from(tagMap.entries()).map(([slug, { displayName, posts: tagPosts }]) => {
+        const sorted = tagPosts.sort(
+            (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+        );
+        return {
+            params: { tag: slug },
+            props: {
+                displayName,
+                posts: sorted.map(post => ({
+                    id: post.id,
+                    title: post.data.title,
+                    date: post.data.date,
+                    description: post.data.description,
+                    tags: post.data.tags,
+                    readingTime: getReadingTime(post.body || ''),
+                })),
+            },
+        };
+    });
+}
+
+const { displayName, posts } = Astro.props;
+const postCount = posts.length;
+const postLabel = postCount === 1 ? 'post' : 'posts';
+---
+
+<BaseLayout
+    title={`Posts tagged ${displayName} — Project Flux Meridian`}
+    description={`All blog posts tagged "${displayName}" on Project Flux Meridian.`}
+>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero__content">
+            <h1>{displayName}</h1>
+            <p class="hero__subtitle">{postCount} {postLabel}</p>
+        </div>
+    </section>
+
+    <!-- Posts -->
+    <section class="section posts">
+        <div class="container posts__content">
+            <a href="/blog" class="posts__back">&larr; All posts</a>
+            <div class="posts__list">
+                {posts.map((post: any) => (
+                    <PostCard
+                        id={post.id}
+                        title={post.title}
+                        date={post.date}
+                        description={post.description}
+                        tags={post.tags}
+                        readingTime={post.readingTime}
+                    />
+                ))}
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .hero {
+        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+        padding-block: var(--space-3xl) var(--space-2xl);
+    }
+
+    .hero__content {
+        text-align: center;
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .hero__subtitle {
+        font-size: var(--text-xl);
+        color: var(--text-secondary);
+        margin-top: var(--space-md);
+    }
+
+    .posts__content {
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .posts__back {
+        display: inline-block;
+        color: var(--text-muted);
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-bottom: var(--space-lg);
+        transition: color var(--transition-fast);
+    }
+
+    .posts__back:hover {
+        color: var(--accent-secondary);
+    }
+
+    .posts__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+</style>

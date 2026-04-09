@@ -1,0 +1,102 @@
+---
+import { slugifyTag } from '../utils/slugify';
+
+interface Props {
+    title: string;
+    date: Date;
+    tags: string[];
+    readingTime: string;
+    author: string;
+}
+
+const { title, date, tags, readingTime, author } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
+---
+
+<header class="post-header">
+    <h1 class="post-header__title">{title}</h1>
+    <p class="post-header__meta">
+        <time datetime={date.toISOString().split('T')[0]}>{formattedDate}</time>
+        <span class="post-header__divider">&middot;</span>
+        <span>{readingTime}</span>
+    </p>
+    {tags.length > 0 && (
+        <ul class="post-header__tags">
+            {tags.map(tag => (
+                <li>
+                    <a href={`/blog/tags/${slugifyTag(tag)}`} class="post-header__tag">
+                        {tag}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    )}
+    <p class="post-header__author">By {author}</p>
+</header>
+
+<style>
+    .post-header {
+        padding-bottom: var(--space-lg);
+        margin-bottom: var(--space-xl);
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .post-header__title {
+        font-family: var(--font-display);
+        font-size: var(--text-4xl);
+        color: var(--text-primary);
+        margin-bottom: var(--space-md);
+    }
+
+    .post-header__meta {
+        color: var(--text-muted);
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-md);
+    }
+
+    .post-header__divider {
+        margin-inline: var(--space-sm);
+    }
+
+    .post-header__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        list-style: none;
+        padding: 0;
+        margin-bottom: var(--space-md);
+    }
+
+    .post-header__tag {
+        display: inline-block;
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius);
+        padding: var(--space-xs) var(--space-sm);
+        font-size: var(--text-sm);
+        color: var(--accent-secondary);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+    }
+
+    .post-header__tag:hover {
+        color: var(--accent-warm);
+    }
+
+    .post-header__author {
+        color: var(--text-secondary);
+        font-size: var(--text-base);
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .post-header__title {
+            font-size: var(--text-3xl);
+        }
+    }
+</style>

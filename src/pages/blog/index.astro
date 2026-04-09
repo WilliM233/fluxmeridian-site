@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getReadingTime } from '../../utils/reading-time';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const sorted = posts.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<BaseLayout
+    title="Blog — Project Flux Meridian"
+    description="Thoughts on building tools for ADHD, open-source development, and technology access."
+>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero__content">
+            <h1>From the Workshop</h1>
+            <p class="hero__subtitle">Build logs, case studies, and lessons from building tools that matter.</p>
+        </div>
+    </section>
+
+    <!-- Posts -->
+    <section class="section posts">
+        <div class="container posts__content">
+            {sorted.length > 0 ? (
+                <div class="posts__list">
+                    {sorted.map(post => (
+                        <PostCard
+                            id={post.id}
+                            title={post.data.title}
+                            date={post.data.date}
+                            description={post.data.description}
+                            tags={post.data.tags}
+                            readingTime={getReadingTime(post.body || '')}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <p class="posts__empty">No posts yet — check back soon.</p>
+            )}
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .hero {
+        background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+        padding-block: var(--space-3xl) var(--space-2xl);
+    }
+
+    .hero__content {
+        text-align: center;
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .hero__subtitle {
+        font-size: var(--text-xl);
+        color: var(--text-secondary);
+        margin-top: var(--space-md);
+    }
+
+    .posts__content {
+        max-width: 720px;
+        margin-inline: auto;
+    }
+
+    .posts__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+
+    .posts__empty {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: var(--text-lg);
+        padding: var(--space-xl) 0;
+    }
+</style>
