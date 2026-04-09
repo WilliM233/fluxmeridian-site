@@ -1,0 +1,102 @@
+---
+interface Props {
+    id: string;
+    title: string;
+    date: Date;
+    description: string;
+    tags: string[];
+    readingTime: string;
+}
+
+const { id, title, date, description, tags, readingTime } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
+---
+
+<a href={`/blog/${id}`} class="post-card">
+    <p class="post-card__meta">
+        <time datetime={date.toISOString().split('T')[0]}>{formattedDate}</time>
+        <span class="post-card__divider">&middot;</span>
+        <span>{readingTime}</span>
+    </p>
+    <h2 class="post-card__title">{title}</h2>
+    <p class="post-card__description">{description}</p>
+    {tags.length > 0 && (
+        <div class="post-card__tags">
+            {tags.map(tag => (
+                <span class="post-card__tag">{tag}</span>
+            ))}
+        </div>
+    )}
+</a>
+
+<style>
+    .post-card {
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--border-radius-lg);
+        padding: var(--space-lg);
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .post-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-accent);
+        box-shadow: 0 4px 24px var(--accent-glow);
+    }
+
+    .post-card:focus-visible {
+        outline: 2px solid var(--accent-warm);
+        outline-offset: 2px;
+    }
+
+    .post-card__meta {
+        color: var(--text-muted);
+        font-size: var(--text-sm);
+        margin: 0;
+    }
+
+    .post-card__divider {
+        margin-inline: var(--space-sm);
+    }
+
+    .post-card__title {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        color: var(--text-primary);
+        margin-top: var(--space-sm);
+        margin-bottom: 0;
+    }
+
+    .post-card__description {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        margin-top: var(--space-xs);
+        margin-bottom: 0;
+    }
+
+    .post-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+    }
+
+    .post-card__tag {
+        display: inline-block;
+        background: var(--bg-card-hover);
+        border-radius: var(--border-radius);
+        padding: var(--space-xs) var(--space-sm);
+        font-size: var(--text-sm);
+        color: var(--accent-secondary);
+    }
+</style>
