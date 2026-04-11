@@ -1,9 +1,10 @@
 ---
 title: "I'm Not a Community Person. I'm Starting a Community Project Anyway."
 description: "Why someone who usually keeps to themselves is offering free tech help to anyone in Springfield who needs it."
-pubDate: 2026-04-13
+date: 2026-04-13
 tags: ["fluxhelp", "springfield", "community"]
 draft: false
+coverImage: "/images/blog/fluxhelp-cover.png"
 ---
 
 I'm not a community person. I say that without shame. It's just how I'm wired. My energy is finite, my brain is protective of it, and most of my life has been spent in front of a screen solving problems nobody asked me to solve. I show up to things when I have to. I leave when I can. I've never been the person who joins committees or volunteers at events or posts in the neighborhood Facebook group.
