@@ -2,6 +2,7 @@
 title: "I'm Not a Community Person. I'm Starting a Community Project Anyway."
 description: "Why someone who usually keeps to themselves is offering free tech help to anyone in Springfield who needs it."
 date: 2026-04-13
+author: "L Melton"
 tags: ["fluxhelp", "springfield", "community"]
 draft: false
 coverImage: "/images/blog/fluxhelp-cover.png"
